@@ -1,75 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+import React from 'react'
 
-class App extends React.Component {
-  state = {
-    name: "circle",
-    values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+import WheelComponent from 'react-wheel-of-prizes'
+import './index.css'
+
+const App = () => {
+  const segments = [
+    'better luck next time',
+    'won 70',
+    'won 10',
+    'better luck next time',
+    'won 2',
+    'won uber pass',
+    'better luck next time',
+    'won a voucher',
+    'won 70',
+    'won 10',
+    'better luck next time',
+    'won 2',
+    'won uber pass',
+    'better luck next time',
+    'won a voucher'
+  ]
+  const segColors = [
+    '#EE4040',
+    '#F0CF50',
+    '#815CD1',
+    '#3DA5E0',
+    '#34A24F',
+    '#F9AA1F',
+    '#EC3F3F',
+    '#FF9000',
+    '#F0CF50',
+    '#815CD1',
+    '#3DA5E0',
+    '#34A24F',
+    '#F9AA1F',
+    '#EC3F3F',
+    '#FF9000'
+  ]
+  const onFinished = (winner) => {
+    console.log(winner)
   }
-  startRotate = () => {
-    this.setState({
-      name: "circle start-rotate"
-    });
-
-    setTimeout(() => {
-      this.setState({
-        name: "circle start-rotate stop-rotate"
-      })
-    }, Math.floor(Math.random() * 5000) + 1);
-  }
-  render() {
-    return (
-      <div>
-        <div className='arrow'></div>
-        <ul className={this.state.name}>
-          <li>
-            <div className='text'>{this.state.values[0]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[1]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[2]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[3]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[4]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[5]} Puan </div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[6]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[7]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[8]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[9]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[10]} Puan</div>
-          </li>
-          <li>
-            <div className='text'>{this.state.values[11]} Puan</div>
-          </li>
-        </ul>
-        <button className='spin-button' onClick={this.startRotate}>SPIN</button>
-      </div>
-    );
-  }
-
-
-
+  return (
+    <React.Fragment>
+      <WheelComponent
+        segments={segments}
+        segColors={segColors}
+        winningSegment={segments[3]}
+        onFinished={(winner) => onFinished(winner)}
+        primaryColor='black'
+        contrastColor='white'
+        buttonText='Spin'
+        isOnlyOnce={false}
+        size={290}
+        upDuration={100}
+        downDuration={1000}
+      />
+    </React.Fragment>
+  )
 }
 
-
-
-
-export default App;
+export default App
